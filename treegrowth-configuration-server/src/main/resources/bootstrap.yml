@@ -1,0 +1,16 @@
+server:
+  port: 0001
+
+spring:
+  application:
+    name: configserver
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        git:
+          uri:
+        native:
+          search-locations: classpath:/
+
