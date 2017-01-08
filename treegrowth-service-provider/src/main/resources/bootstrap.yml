@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: service-provider
+  mail:
+      host: smtp.sina.com
+      port: 25
+      username: treegrowth@sina.com
+      password: 123456abc
+      properties:
+        mail.smtp.auth: true
+        mail.transport.protocol: smtp
+
+server:
+  port: 2222
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:1111/eureka/
+tree:
+  location:
+    key: EIGBZ-WMIWF-M4TJ7
+    base-url: http://apis.map.qq.com
+    ip-location: '${tree.location.base-url}/ws/location/v1/ip?ip={ip}&key=${askdog.location.key}&output=json'
+    geo-location: '${tree.location.base-url}/ws/geocoder/v1/?location={lat},{lng}&key=${askdog.location.key}&get_poi={poi}&coord_type=5&output=json'
+    nearby-distance: 50 #kilometers
+    nearby-limit: 1000
+    rencent-limit: 100
+    rate-distance: 50 #kilometers

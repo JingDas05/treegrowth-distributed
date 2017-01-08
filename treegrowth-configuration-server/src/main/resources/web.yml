@@ -27,14 +27,6 @@ spring:
 #      prefix: classpath:/templates/
 #      suffix: .html
 #      mode: HTML
-  mail:
-    host: smtp.sina.com
-    port: 25
-    username: treegrowth@sina.com
-    password: 123456abc
-    properties:
-      mail.smtp.auth: true
-      mail.transport.protocol: smtp
 
 tree:
   cache:
