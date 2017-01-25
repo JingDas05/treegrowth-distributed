@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
-@FeignClient("service")
+@FeignClient("service-consumer")
 @RequestMapping("service/note")
 public interface NoteService {
 

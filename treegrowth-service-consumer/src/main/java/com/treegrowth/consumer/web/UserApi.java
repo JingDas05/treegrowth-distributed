@@ -24,7 +24,7 @@ import java.util.Map;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("api/users")
 public class UserApi {
 
     @Autowired

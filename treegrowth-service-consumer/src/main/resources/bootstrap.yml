@@ -1,8 +1,16 @@
 spring:
   application:
-    name: web
-  cloud:
-    config:
-      uri: http://localhost:0001/
-#      profile: dev
+    name: service-consumer
+#  cloud:
+#    config:
+#      uri: http://localhost:0001/
+##      profile: dev
+
+server:
+  port: 3333
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka/
 

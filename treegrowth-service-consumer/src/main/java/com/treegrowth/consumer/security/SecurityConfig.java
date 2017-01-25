@@ -45,6 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     /**oauth2*/
     @Autowired
     private OAuth2ClientContext oauth2ClientContext;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     /**add global passwordEncoder*/
     @Autowired
@@ -56,13 +58,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setUserDetailsService(tgUserDetailsService);
-        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
         return daoAuthenticationProvider;
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.treegrowth.register;
+package com.treegrowth;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;

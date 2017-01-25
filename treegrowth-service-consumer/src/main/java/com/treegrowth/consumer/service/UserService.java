@@ -11,8 +11,7 @@ import java.util.Optional;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
-@FeignClient("service")
-@RestController()
+@FeignClient("service-consumer")
 @RequestMapping("service/users")
 public interface UserService {
 

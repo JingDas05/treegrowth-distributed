@@ -9,6 +9,23 @@ spring:
       properties:
         mail.smtp.auth: true
         mail.transport.protocol: smtp
+#  data:
+#    mongodb:
+#      host: localhost
+#      database: treegrowth-web
+  redis:
+    host: localhost
+    port: 6379
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/treegrowth
+    username: wusi
+    password: 666666
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
 
 server:
   port: 2222
@@ -16,8 +33,12 @@ server:
 eureka:
   client:
     service-url:
-      default-zone: http://localhost:1111/eureka/
+      defaultZone: http://localhost:1111/eureka/
 tree:
+  cache:
+    expires:
+      cache:service:user:basic: 60
+    default-expire-time: 60
   location:
     key: EIGBZ-WMIWF-M4TJ7
     base-url: http://apis.map.qq.com
@@ -27,3 +48,44 @@ tree:
     nearby-limit: 1000
     rencent-limit: 100
     rate-distance: 50 #kilometers
+
+security:
+  oauth2:
+    client:
+      client-id: acme
+      client-secret: acmesecret
+      scope: read,write
+      auto-approve-scopes: '.*'
+
+#  All developers need to register their application before getting started.
+#  A registered OAuth application is assigned a unique Client ID and Client Secret.
+facebook:
+  client:
+    clientId: 233668646673605
+    clientSecret: 33b17e044ee6a4fa383f46ec6e28ea1d
+    accessTokenUri: https://graph.facebook.com/oauth/access_token
+    userAuthorizationUri: https://www.facebook.com/dialog/oauth
+    tokenName: oauth_token
+    authenticationScheme: query
+    clientAuthenticationScheme: form
+  resource:
+    userInfoUri: https://graph.facebook.com/me
+github:
+  client:
+    clientId: 8bcd82fe9ba1abfb5160
+    clientSecret: 74be72a0400e463699a7b69bfed8b2f57668126b
+    accessTokenUri: https://github.com/login/oauth/access_token
+    userAuthorizationUri: https://github.com/login/oauth/authorize
+    clientAuthenticationScheme: form
+  resource:
+    userInfoUri: https://api.github.com/user
+
+kafka:
+  broker:
+    address: localhost:9092
+  topic: treegrowth
+
+qiniu:
+  ak: e7bw9vdW-XqO0zIZEaY78unLWnmygZjKX4R9mGhE
+  sk: 3yzExv9j2qHrfQAY4zBGoxbcOfz7lYiRovUlqvwd
+  bucket-name: treegrowth
