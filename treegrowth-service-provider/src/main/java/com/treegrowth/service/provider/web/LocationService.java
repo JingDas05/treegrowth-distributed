@@ -20,7 +20,7 @@ public class LocationService {
     private LocationConfiguration locationConfiguration;
 
     @RequestMapping(method = GET)
-    public LocationAnalysisResponse analysisAddress(@RequestParam String ip) {
+    public LocationAnalysisResponse analysisAddress(@RequestParam("ip") String ip) {
         return new LocationAnalysisResponse(this.getRestTemplate().getForObject(locationConfiguration.getIpLocation(), String.class, ip));
     }
 

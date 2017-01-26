@@ -15,10 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.Optional;
@@ -30,7 +27,7 @@ import static com.treegrowth.common.utils.Conditions.checkState;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController()
-@RequestMapping("service/users")
+@RequestMapping("/service/users")
 public class UserService{
 
     @Autowired
@@ -44,7 +41,7 @@ public class UserService{
     @Autowired
     private Sender sender;
 
-    @RequestMapping(method = POST)
+    @RequestMapping(value = "/post", method = POST)
     public UserDetailBasic create(@RequestBody User user) {
         checkState(!userRepository.findByEmail(user.getEmail()).isPresent(), () -> new ConflictException(USER_EXIST));
         user.setRegistrationTime(new Date());
@@ -55,13 +52,13 @@ public class UserService{
     }
 
     @RequestMapping(value = "/{userId}",method = DELETE)
-    public void delete(@RequestParam String userId) {
+    public void delete(@PathVariable String userId) {
         checkState(userRepository.findById(userId).isPresent(), () -> new NotFoundException(USER));
         userRepository.delete(userId);
     }
 
-    @RequestMapping(method = PUT)
-    public UserDetailBasic update(@RequestParam String userId,
+    @RequestMapping(value = "/put", method = PUT)
+    public UserDetailBasic update(@RequestParam("userId") String userId,
                                   @RequestBody AmendedUser amendedUser) {
         User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException(USER));
         user.setName(amendedUser.getName());
@@ -69,9 +66,9 @@ public class UserService{
         return new UserDetailBasic().from(savedUser);
     }
 
-    @RequestMapping(method = GET)
-    public UserDetailBasic get(@RequestParam String loginUserId,
-                               @RequestParam String userId) {
+    @RequestMapping(value = "/get",method = GET)
+    public UserDetailBasic get(@RequestParam("loginUserId") String loginUserId,
+                               @RequestParam("userId") String userId) {
         checkState(loginUserId.equals(userId), () -> new ForbiddenException(USER_DETAIL));
         UserDetailBasic userDetailBasic = userCell.getBasic(userId);
 
@@ -84,7 +81,7 @@ public class UserService{
     }
 
     @RequestMapping(value = "/email", method = GET)
-    public Optional<UserDetail> findByEmail(@RequestParam String email) {
+    public Optional<UserDetail> findByEmail(@RequestParam("email") String email) {
         Optional<User> user = userRepository.findByEmail(email);
         if (user.isPresent()) {
             User savedUser = user.get();
