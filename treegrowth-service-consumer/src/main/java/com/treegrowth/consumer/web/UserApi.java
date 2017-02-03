@@ -47,10 +47,10 @@ public class UserApi {
         return userService.update(userId, amendedUser);
     }
 
-    @PreAuthorize("isAuthenticated()")
+    //@PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/{id}", method = GET)
     public UserDetailBasic get(@AuthenticationPrincipal TgUserDetails tgUserDetails, @PathVariable("id") String userId) {
-        return userService.get(tgUserDetails.getId(), userId);
+        return userService.get(userId, userId);
     }
 
     @RequestMapping(value = "/{id}/excel", method = GET)

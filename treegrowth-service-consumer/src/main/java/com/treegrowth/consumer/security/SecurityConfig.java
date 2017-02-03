@@ -72,7 +72,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                             "/api/**",
                             "/login/**",
                             "/webjars/**",
-                            "oauth/**")
+                            "/oauth/**",
+                            "/service/**")
                     .permitAll()
                     //.antMatchers("/user/**").hasRole("USER")
                     .and()

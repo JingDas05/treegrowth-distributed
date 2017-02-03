@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
-@FeignClient("service-consumer")
+@FeignClient("service-provider")
 @RequestMapping("service/upload")
 public interface UploadService {
 

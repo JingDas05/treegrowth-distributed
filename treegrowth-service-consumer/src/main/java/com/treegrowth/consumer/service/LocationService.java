@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
-@FeignClient("service-consumer")
+@FeignClient("service-provider")
 @RequestMapping("service/location")
 public interface LocationService {
 

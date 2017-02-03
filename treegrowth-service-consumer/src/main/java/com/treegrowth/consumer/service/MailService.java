@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
-@FeignClient("service-consumer")
+@FeignClient("service-provider")
 @RequestMapping("service/mail")
 public interface MailService {
 

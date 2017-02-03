@@ -26,7 +26,7 @@ import static com.treegrowth.common.exception.NotFoundException.Message.USER;
 import static com.treegrowth.common.utils.Conditions.checkState;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
-@RestController()
+@RestController
 @RequestMapping("/service/users")
 public class UserService{
 
